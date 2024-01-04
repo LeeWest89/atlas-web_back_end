@@ -27,6 +27,6 @@ export default class Pricing {
   }
 
   convertPrice(amount, conversionRate) {
-    return `${this.amount * conversionRate} ${new Currency(this._currency.code, this._currency.name).displayFullCurrency()}`;
+    return `${amount * conversionRate} ${new Currency(this._currency.code, this._currency.name).displayFullCurrency()}`;
   }
 }
