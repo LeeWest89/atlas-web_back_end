@@ -1,5 +1,5 @@
 export default function cleanSet(set, startString) {
-  if (!startString.length || !startString) {
+  if (!startString || !startString.length) {
     return '';
   }
   const values = Array.from(set)
