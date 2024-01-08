@@ -1,5 +1,5 @@
 export default function cleanSet(set, startString) {
-  if (startString.length === 0 || (typeof startString !== 'string' && typeof startString !== 'object')) {
+  if (startString.length === 0 || typeof startString !== 'string' || typeof startString !== 'object') {
     return '';
   }
   let values = Array.from(set)
