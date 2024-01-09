@@ -9,7 +9,7 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
 
   const photo = uploadPhoto(fileName).catch((error) => ({
     status: 'rejected',
-    value: error,
+    value: `Error: ${error.message}`,
   }));
 
   return Promise.all([user, photo]);
