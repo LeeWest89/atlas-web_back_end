@@ -1,5 +1,13 @@
-#!/bin/bash
-for file in "$@"; 
-do
-  touch "$file" && chmod u+x "$file"
+#!/usr/bin/env bash                                                 
+
+#Create files easy                                                  
+
+for f in $@                                                         
+
+do                                                                  
+
+        echo "#include" >> $f                                       
+
+        chmod u+x $f                                                
+
 done

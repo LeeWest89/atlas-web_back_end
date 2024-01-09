@@ -1,5 +1,9 @@
-#!/bin/bash
-set_commit_message() {
-  read -p "Enter commit message: " -e -i "$1" msg
-}
-git add . -A && git commit -m "$msg" && git push
+#!/bin/bash                                                         
+
+git add . -A                                                        
+
+read -p "Commit Description:" msg                                   
+
+git commit -m "$msg"                                                
+
+git push 
