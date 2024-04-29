@@ -3,10 +3,10 @@
 """
 
 
-def sum_list(input_list: float) -> float:
+from typing import List
+
+
+def sum_list(input_list: List[float]) -> float:
     """iterating through list and adding as I go
     """
-    amount = 0
-    for i in input_list:
-        amount += i
-    return (amount)
+    return (sum(input_list))
