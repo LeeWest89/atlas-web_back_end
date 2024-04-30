@@ -9,7 +9,7 @@ import random
 from typing import Generator
 
 
-async def async_generator() -> typing.Generator[float, None, None]:
+async def async_generator() -> Generator[float, None, None]:
     """
     Waits 1 second between each loop
     """
