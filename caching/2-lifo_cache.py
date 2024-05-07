@@ -28,6 +28,8 @@ class LIFOCache(BaseCaching):
                     print("DISCARD:", old_key)
                     del self.cache_data[old_key]
                     self.counter += 1
+                    if self.counter == self.MAX_ITEMS:
+                        self.counter = 0
 
             self.cache_data[key] = item
             self.queue.append(key)
