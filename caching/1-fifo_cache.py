@@ -37,4 +37,3 @@ class FIFOCache(BaseCaching):
             return (None)
 
         return (None)
-        
