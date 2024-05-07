@@ -13,7 +13,7 @@ class LRUCache(BaseCaching):
         self.queue = []
 
     def put(self, key, item):
-        """Adding keys and items or overwriting items that are the least used"""
+        """Adding keys or overwriting items that are the least used"""
         if key is None or item is None:
             return ()
 
@@ -21,8 +21,8 @@ class LRUCache(BaseCaching):
             self.queue.remove(key)
 
         elif len(self.cache_data) >= self.MAX_ITEMS:
-                print("DISCARD:", self.queue[0])
-                del self.cache_data[self.queue.pop(0)]
+            print("DISCARD:", self.queue[0])
+            del self.cache_data[self.queue.pop(0)]
 
         self.cache_data[key] = item
         self.queue.append(key)
