@@ -11,7 +11,6 @@ class LIFOCache(BaseCaching):
         """Starting Cache"""
         super().__init__()
         self.queue = []
-        self.counter = 0
 
     def put(self, key, item):
         """Adding keys and items or overwriting items starting oldest"""
@@ -23,13 +22,8 @@ class LIFOCache(BaseCaching):
 
         else:
             if len(self.cache_data) >= self.MAX_ITEMS:
-                if self.queue:
-                    old_key = self.queue.pop(-1 - self.counter)
-                    print("DISCARD:", old_key)
-                    del self.cache_data[old_key]
-                    self.counter += 1
-                    if self.counter == self.MAX_ITEMS:
-                        self.counter = 0
+                print("DISCARD:", self.queue[-1])
+                del self.cache_data[self.queue[-1]]
 
             self.cache_data[key] = item
             self.queue.append(key)
