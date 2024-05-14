@@ -6,6 +6,8 @@ import re
 from typing import List
 import logging
 import csv
+import os
+import mysql.connector
 
 
 def filter_datum(fields: List[str], redaction: str,
@@ -43,6 +45,18 @@ def get_logger() -> logging.Logger:
     logger.addHandler(stream)
 
     return (logger)
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    """Connecting to database to read user table"""
+    username = os.environ.get("PERSONAL_DATA_DB_USERNAME", "root")
+    password = os.environ.get("PERSONAL_DATA_DB_PASSWORD", "")
+    host = os.environ.get("PERSONAL_DATA_DB_HOST", "localhost")
+    name = os.environ.get("PERSONAL_DATA_DB_NAME")
+
+    return (mysql.connector.connect(user=username,
+                                    password=password,
+                                    host=host,
+                                    database=name))
 
 
 class RedactingFormatter(logging.Formatter):
