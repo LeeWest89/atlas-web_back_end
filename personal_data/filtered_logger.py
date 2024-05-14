@@ -5,6 +5,7 @@
 import re
 from typing import List
 import logging
+import csv
 
 
 def filter_datum(fields: List[str], redaction: str,
@@ -22,6 +23,27 @@ def filter_datum(fields: List[str], redaction: str,
     """
 
     return (hidden_message)
+
+
+PII_FIELDS = ("name", "email", "phone", "ssn", "password")
+
+
+def get_logger() -> logging.Logger:
+    """
+    Setting the logger as requested,
+    then formatting the info to hide sensitive data
+    """
+    logger = logging.getLogger("user_data")
+    logger.setLevel(logging.INFO)
+    logger.propagate = False
+
+    formatter = RedactingFormatter(PII_FIELDS)
+    stream = logging.StreamHandler()
+    stream.setFormatter(formatter)
+
+    logger.addHandler(stream)
+
+    return (logger)
 
 
 class RedactingFormatter(logging.Formatter):
