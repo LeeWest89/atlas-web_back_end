@@ -10,6 +10,9 @@ import os
 import mysql.connector
 
 
+PII_FIELDS = ("name", "email", "phone", "ssn", "password")
+
+
 def filter_datum(fields: List[str], redaction: str,
                  message: str, separator: str) -> str:
     """Obfuscates the log depending on what needs to be redacted"""
@@ -25,9 +28,6 @@ def filter_datum(fields: List[str], redaction: str,
     """
 
     return (hidden_message)
-
-
-PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
 
 def get_logger() -> logging.Logger:
@@ -78,3 +78,26 @@ class RedactingFormatter(logging.Formatter):
         record.msg = filter_datum(self.fields,
                                   self.REDACTION, record.msg, self.SEPARATOR)
         return (super().format(record))
+
+
+def main() -> None:
+    """
+    Reads and filters info
+    """
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM users;")
+    logger = get_logger()
+
+    for row in cursor:
+        row_info = ''
+        for key in row:
+            row_info += '{}={}; '.format(key, row[key])
+        logger.info(row_info)
+
+    cursor.close()
+    db.close()
+
+
+if __name__ == '__main__':
+    main()
