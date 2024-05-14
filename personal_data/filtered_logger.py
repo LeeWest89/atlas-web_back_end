@@ -46,6 +46,7 @@ def get_logger() -> logging.Logger:
 
     return (logger)
 
+
 def get_db() -> mysql.connector.connection.MySQLConnection:
     """Connecting to database to read user table"""
     username = os.environ.get("PERSONAL_DATA_DB_USERNAME", "root")
