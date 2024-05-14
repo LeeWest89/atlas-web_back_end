@@ -6,7 +6,8 @@ import re
 from typing import List
 
 
-def filter_datum(fields: List[str], redaction: str, message: str, separator: str) -> str:
+def filter_datum(fields: List[str], redaction: str,
+                 message: str, separator: str) -> str:
     """Obfuscates the log depending on what needs to be redacted"""
     pattern = '(' + '|'.join(fields) + ')=[^' + re.escape(separator) + ']+'
     """
