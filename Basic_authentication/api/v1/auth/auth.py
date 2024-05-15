@@ -8,6 +8,7 @@ from typing import List, TypeVar
 
 
 class Auth:
+    """Class for Authorization"""
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """Public Method for authorization"""
         return (False)
