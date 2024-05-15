@@ -77,10 +77,8 @@ class BasicAuth(Auth):
         if not users:
             return (None)
 
-        if user_email not in [user.email for user in users]:
-            return (None)
-
-        if not users[0].is_valid_password(user_pwd):
-            return (None)
-
-        return (users[0])
+        for user in users:
+            if user.is_valid_password(user_pwd):
+                return (user)
+            else:
+                return (None)
