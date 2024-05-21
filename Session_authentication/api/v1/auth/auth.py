@@ -5,6 +5,7 @@
 
 from flask import request
 from typing import List, TypeVar
+import os
 
 
 class Auth:
@@ -35,3 +36,11 @@ class Auth:
     def current_user(self, request=None) -> TypeVar('User'):
         """Public Method for authorization"""
         return (None)
+
+    SESSION_NAME = os.getenv('SESSION_NAME', '_my_session_id')
+
+    def session_cookie(self, request=None):
+        """returns a cookie value from a request or None"""
+        if request is None:
+            return (None)
+        return (request.cookies.get(self.SESSION_NAME))
