@@ -4,7 +4,7 @@ Route module
 """
 
 
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request, abort, redirect
 from auth import Auth
 
 
@@ -58,7 +58,7 @@ def logout() -> str:
     s_id = request.cookies.get('session_id')
     user = AUTH.get_user_from_session_id(s_id)
 
-    if user :
+    if user:
         AUTH.destroy_session(user.id)
         return redirect('/', code=302)
 
