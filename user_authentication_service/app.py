@@ -52,5 +52,22 @@ def login():
     return (response)
 
 
+@app.route('/sessions', methods=['DELETE'])
+def logout():
+    """Logs user out"""
+    s_id = request.cokies.get('session_id')
+
+    if s_id is None:
+        abort(403)
+
+    user = AUTH.get_user_from_session_id(s_id)
+
+    if user is None:
+        abort(403)
+
+    AUTH.destroy_session(user.id)
+    return (redirect("/"))
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
