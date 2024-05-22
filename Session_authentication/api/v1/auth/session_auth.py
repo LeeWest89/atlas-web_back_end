@@ -17,6 +17,10 @@ class SessionAuth(Auth):
         if type(user_id) != str or user_id is None:
             return (None)
 
+        for session_id, current_user_id in self.user_id_by_session_id.items():
+            if current_user_id == user_id:
+                return session_id
+
         session_id = str(uuid.uuid4())
         self.user_id_by_session_id[session_id] = user_id
 

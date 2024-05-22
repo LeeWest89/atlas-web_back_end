@@ -37,10 +37,10 @@ class Auth:
         """Public Method for authorization"""
         return (None)
 
-    SESSION_NAME = os.getenv('SESSION_NAME', '_my_session_id')
+    s_name = os.getenv('SESSION_NAME', '_my_session_id')
 
     def session_cookie(self, request=None):
         """returns a cookie value from a request or None"""
         if request is None:
             return (None)
-        return (request.cookies.get(self.SESSION_NAME))
+        return (request.cookies.get(self.s_name))

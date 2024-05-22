@@ -72,7 +72,7 @@ def before_handler():
             if auth.session_cookie(request):
                 id = auth.user_id_for_session_id(auth.session_cookie(request))
                 if id:
-                    request.current_user = User.get(user_id)
+                    request.current_user = User.get(id)
                 else:
                     abort(403)
 
