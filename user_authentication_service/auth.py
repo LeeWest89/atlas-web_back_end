@@ -30,9 +30,9 @@ class Auth:
     def register_user(self, email: str, password: str) -> User:
         """Sets up new users"""
         try:
-            current_user = self._db.find_user_by(email=email)
+            user = self._db.find_user_by(email=email)
 
-            if current_user:
+            if user:
                 raise ValueError("User {} already exists".format(email))
 
         except NoResultFound:
@@ -55,3 +55,14 @@ class Auth:
 
         except NoResultFound:
             return (False)
+
+    def create_session(self, email: str) -> str:
+        """Creates a session id for the user"""
+        try:
+            user = self._db.find_user_by(email=email)
+            s_id = _generate_uuid()
+            self._db.update_user(user.id, session_id=s_id)
+            return (s_id)
+
+        except NoResultFound:
+            return (None)
