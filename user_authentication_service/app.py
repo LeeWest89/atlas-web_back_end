@@ -35,7 +35,7 @@ def users():
 
 @app.route('/sessions', methods=['POST'])
 def login():
-    """"""
+    """Creates a cookie with the session_id as key"""
     email = request.form.get("email")
     pswd = request.form.get("password")
 

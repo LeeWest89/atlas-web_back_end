@@ -45,7 +45,8 @@ class Auth:
         try:
             user = self._db.find_user_by(email=email)
 
-            if user and bcrypt.checkpw(password.encode('utf-8'), user.hashed_password):
+            if user and bcrypt.checkpw(password.encode('utf-8'),
+                                       user.hashed_password):
                 return (True)
 
             else:
@@ -61,6 +62,18 @@ class Auth:
             s_id = _generate_uuid()
             self._db.update_user(user.id, session_id=s_id)
             return (s_id)
+
+        except NoResultFound:
+            return (None)
+
+    def get_user_from_session_id(session_id: str) -> User:
+        """Returns User or None based on session_id"""
+        if session_id is None:
+            return (None)
+
+        try:
+            user = self._db.find_user_by(session_id=session_id)
+            return (user)
 
         except NoResultFound:
             return (None)
