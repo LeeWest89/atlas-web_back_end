@@ -4,7 +4,7 @@ Route module
 """
 
 
-from flask import Flask, jsonify, request,abort
+from flask import Flask, jsonify, request, abort
 from auth import Auth
 
 
@@ -41,7 +41,7 @@ def login():
 
     if not email or not pswd:
         abort(400)
-    
+
     if not AUTH.valid_login(email, pswd):
         abort(401)
 
