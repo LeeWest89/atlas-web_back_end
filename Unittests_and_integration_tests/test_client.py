@@ -78,15 +78,15 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         cls.get_patcher = patch("requests.get", **parameters)
         cls.get_patcher.start()
 
+    @classmethod
+    def tearDownClass(cls):
+        """Teardown class method"""
+        cls.get_patcher.stop()
+
     def test_public_repos(self):
         """test public_repo"""
         self.assertEqual(GithubOrgClient("Google").public_repos(),
                          self.expected_repos)
-
-    @classmethod
-    def tearDowClass(cls):
-        """Teardown class method"""
-        cls.get_patcher.stop()
 
 
 if __name__ == '__main__':
