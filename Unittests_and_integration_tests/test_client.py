@@ -14,7 +14,7 @@ class TestGithubOrgClient(unittest.TestCase):
         ("google",),
         ("abc",),
     ])
-    @patch('client.get_json', return_value={})
+    @patch("client.get_json", return_value={})
     def test_org(self, org_name, mock):
         """test that GithubOrgClient.org returns the correct value"""
         self.assertEqual(GithubOrgClient(org_name).org, {})
@@ -33,6 +33,19 @@ class TestGithubOrgClient(unittest.TestCase):
                    PropertyMock(return_value=result)):
             self.assertEqual(GithubOrgClient(org_name)._public_repos_url,
                              result.get("repos_url"))
+
+########################
+
+    @patch("client.get_json", return_value=[
+        {"name": "Amazon"}, {"name": "Google"}
+        ])
+    def test_public_repos(self, mocked):
+        """Test public_repo method"""
+        with patch('client.GithubOrgClient._public_repos_url',
+                   new_callable=PropertyMock):
+            self.assertEqual(GithubOrgClient('test').public_repos(),
+                             ["Amazon", "Google"])
+            mocked.assert_called_once()
 
 
 if __name__ == '__main__':
