@@ -2,7 +2,7 @@
 """
 Main file
 """
-from exercise import Cache
+from exercise import Cache, replay
 
 cache = Cache()
 
@@ -12,4 +12,4 @@ cache.store("bar")
 cache.store(42)
 
 # Replay the history of calls for the store method
-Cache.replay(cache.store)
+replay(cache.store)
