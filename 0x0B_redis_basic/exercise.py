@@ -21,14 +21,15 @@ def count_calls(method: Callable) -> Callable:
 def call_history(method: Callable) -> Callable:
     """store the history of inputs and outputs"""
     @wraps(method)
-    def h_wrap(*args, **kwargs):
+    def h_wrap(self, *args, **kwargs):
         """Create keys for inputs and outputs"""
         in_key = method.__qualname__ + ':inputs'
         out_key = method.__qualname__ + ':outputs'
+        result = method(self, *args, **kwargs)
 
-        redis.Redis().rpush(in_key, str(args))
-        redis.Redis().rpush(out_key, str(method(*args, **kwargs)))
-        return (method(*args, **kwargs))
+        self._redis.rpush(in_key, str(args))
+        self._redis.rpush(out_key, str(result))
+        return (result)
 
     return (h_wrap)
 
