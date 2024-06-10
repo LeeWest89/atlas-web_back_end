@@ -2,7 +2,7 @@
 -- using DELIMITER to be able to create trigger
 DELIMITER //
 
-CREATE TRIGGER decrease_quantity_after_order
+CREATE TRIGGER decrease_quantity
 AFTER INSERT ON orders
 FOR EACH ROW
 BEGIN
