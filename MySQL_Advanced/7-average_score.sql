@@ -8,7 +8,7 @@ BEGIN
     DECLARE average_score DECIMAL(10, 2);
     SELECT AVG(score) INTO average_score
     FROM corrections
-    WHERE user_id = user_id;
+    WHERE u_id = user_id;
 
     UPDATE users
     SET average_score = average_score
