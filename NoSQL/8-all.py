@@ -3,5 +3,5 @@
 
 
 def list_all(mongo_collection):
-    """"""
+    """Function to list all documents"""
     return (mongo_collection.find())
