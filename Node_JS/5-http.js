@@ -17,12 +17,13 @@ const app = http.createServer(async (req, res) => {
   } else if (url === '/students') {
     res.write('This is the list of our students\n');
     try {
-      const { studentNames, students } = await countStudents(dbName);
-
-      res.write(`Number of students: ${students}\n`);
-      for (const [field, firstnames] of Object.entries(studentNames)) {
-        res.write(`Number of students in ${field}: ${firstnames.length}. List: ${firstnames.join(', ')}\n`);
-      }
+      const text = await countStudents(dbName);
+      text.forEach((line, index) => {
+        res.write(line);
+        if (index < text.length - 1) {
+          res.write('\n');
+        }
+      });
       res.end();
     } catch (error) {
       res.end(error.message);

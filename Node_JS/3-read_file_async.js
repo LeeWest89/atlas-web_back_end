@@ -29,12 +29,13 @@ function countStudents(path) {
         }
       }
 
-      console.log(`Number of students: ${students}`);
+      const text = [`Number of students: ${students}`];
+
       for (const [field, firstnames] of Object.entries(studentNames)) {
-        console.log(`Number of students in ${field}: ${firstnames.length}. List: ${firstnames.join(', ')}`);
+        text.push(`Number of students in ${field}: ${firstnames.length}. List: ${firstnames.join(', ')}`);
       }
 
-      resolve({ studentNames, students });
+      resolve(text);
     });
   });
 }
