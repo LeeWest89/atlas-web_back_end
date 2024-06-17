@@ -1,3 +1,4 @@
+// function to attemp to read database asynchronously
 const fs = require('fs');
 
 function countStudents(path) {
