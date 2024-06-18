@@ -48,4 +48,4 @@ class StudentsController {
   }
 }
 
-module.export = StudentsController;
+module.exports = StudentsController;
