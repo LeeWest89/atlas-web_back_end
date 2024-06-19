@@ -11,7 +11,9 @@ function readDatabase(path) {
 
       const lines = data.split('\n');
       const studentNames = {};
-      for (let i = 1; i < lines.length; i += 1) {
+      let i = 1;
+
+      for (; i < lines.length; i += 1) {
         const line = lines[i].trim();
 
         if (line) {

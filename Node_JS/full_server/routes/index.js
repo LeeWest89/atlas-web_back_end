@@ -7,9 +7,17 @@ function controlRoute(app) {
   const router = express.Router();
   app.use('/', router);
 
-  router.get('/', AppController.getHomepage);
-  router.get('/students', StudentsController.getAllStudents);
-  router.get('/students/:major', StudentsController.getAllStudentsByMajor);
+  router.get('/', (request, resolve) => {
+    AppController.getHomepage(request, resolve);
+  });
+
+  router.get('/students', (request, resolve) => {
+    StudentsController.getAllStudents(request, resolve);
+  });
+
+  router.get('/students/:majorto', (request, resolve) => {
+    StudentsController.getAllStudentsByMajor(request, resolve);
+  });
 }
 
 module.exports = controlRoute;

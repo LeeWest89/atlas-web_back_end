@@ -12,8 +12,9 @@ function countStudents(path) {
       const lines = data.split('\n');
       const studentNames = {};
       let students = 0;
+      let i = 1;
 
-      for (let i = 1; i < lines.length; i += 1) {
+      for (; i < lines.length; i += 1) {
         const line = lines[i].trim();
 
         if (line) {
@@ -34,6 +35,8 @@ function countStudents(path) {
       for (const [field, firstnames] of Object.entries(studentNames)) {
         text.push(`Number of students in ${field}: ${firstnames.length}. List: ${firstnames.join(', ')}`);
       }
+
+      text.forEach((line) => console.log(line));
 
       resolve(text);
     });
