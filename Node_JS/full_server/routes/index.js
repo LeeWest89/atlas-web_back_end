@@ -1,7 +1,7 @@
 // creating function the controls Routing
-import express from 'express';
-import AppController from '../controllers/AppController';
-import StudentsController from '../controllers/StudentsController';
+const express = require('express');
+const AppController = require('../controllers/AppController');
+const StudentsController = require('../controllers/StudentsController');
 
 function controlRoute(app) {
   const router = express.Router();

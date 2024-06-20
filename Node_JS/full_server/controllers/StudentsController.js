@@ -1,6 +1,6 @@
 // creates StudentsController class and static methods getAllstudents and getAllStudentsByMajor
-import path from 'path';
-import readDatabase from '../utils';
+const path = require('path');
+const readDatabase = require('../utils');
 
 class StudentsController {
   static getAllStudents(request, response) {

@@ -1,6 +1,6 @@
 // create a small Express server
-import express from 'express';
-import controlRoute from './routes/index';
+const express = require('express');
+const controlRoute = require('./routes/index');
 
 const app = express();
 const PORT = 1245;
