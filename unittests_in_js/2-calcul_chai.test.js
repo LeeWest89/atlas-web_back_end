@@ -5,31 +5,31 @@ const calculateNumber = require('./1-calcul')
 describe('calculateNumber', function() {
   // tests for SUM
   describe('SUM test', function() {
-    it('should return correct vaules for SUM', function() {
-      expect(calculateNumber('SUM', 1, 3), 4);
-      expect(calculateNumber('SUM', 1.5, 0), 2);
-      expect(calculateNumber('SUM', 0.2, -0.3), 0);
-      expect(calculateNumber('SUM', -5.43, -3.81), -9);
+    it('should return correct values for SUM', function() {
+      expect(calculateNumber('SUM', 1, 3)).to.equal(4);
+      expect(calculateNumber('SUM', 1.5, 0)).to.equal(2);
+      expect(calculateNumber('SUM', 0.2, -0.3)).to.equal(0);
+      expect(calculateNumber('SUM', -5.43, -3.81)).to.equal(-9);
     });
   });
 
   // tests for SUBTRACT
   describe('SUBTRACT test', function() {
-    it('should return correct vaules for SUBTRACT', function() {
-      expect(calculateNumber('SUBTRACT', 1, 3), -2);
-      expect(calculateNumber('SUBTRACT', 1.5, 0), 2);
-      expect(calculateNumber('SUBTRACT', 0.2, -0.3), 0);
-      expect(calculateNumber('SUBTRACT', -5.43, -3.81), -1);
+    it('should return correct values for SUBTRACT', function() {
+      expect(calculateNumber('SUBTRACT', 1, 3)).to.equal(-2);
+      expect(calculateNumber('SUBTRACT', 1.5, 0)).to.equal(2);
+      expect(calculateNumber('SUBTRACT', 0.2, -0.3)).to.equal(0);
+      expect(calculateNumber('SUBTRACT', -5.43, -3.81)).to.equal(-1);
     });
   });
 
   // tests for DIVID
   describe('DIVID test', function() {
-    it('should return correct vaules for DIVIDE', function() {
-      expect(calculateNumber('DIVIDE', 4, 2), 2);
-      expect(calculateNumber('DIVIDE', 1.5, 0), 'Error');
-      expect(calculateNumber('DIVIDE', 5.5, 3.2), 2);
-      expect(calculateNumber('DIVIDE', -8.43, -3.81), 2);
+    it('should return correct values for DIVIDE', function() {
+      expect(calculateNumber('DIVIDE', 4, 2)).to.equal(2);
+      expect(calculateNumber('DIVIDE', 1.5, 0)).to.equal('Error');
+      expect(calculateNumber('DIVIDE', 5.5, 3.2)).to.equal(2);
+      expect(calculateNumber('DIVIDE', -8.43, -3.81)).to.equal(2);
     });
   });
 });
