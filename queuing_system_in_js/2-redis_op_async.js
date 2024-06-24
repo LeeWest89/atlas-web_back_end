@@ -1,7 +1,9 @@
-// Same as task 0, adding two functions
+// Same as task 1, making displaySchoolValue async
 import redis from 'redis';
+import { promisify } from 'util';
 
 const client = redis.createClient();
+const getA = promisify(client.get).bind(client);
 
 client.on('connect', () => {
   console.log('Redis client connected to the server');
@@ -15,14 +17,12 @@ function setNewSchool(schoolName, value) {
   client.set(schoolName, value, redis.print);
 }
 
-function displaySchoolValue(schoolname) {
-  client.get(schoolname, (error, response) => {
-    if (error) {
-      console.error(`${schoolname}: ${error.message}`);
-    } else {
-      console.log(response);
-    }
-  });
+async function displaySchoolValue(schoolname) {
+  try {
+    console.log(await getA(schoolname));
+  } catch (error) {
+    console.error(`${schoolname}: ${error.message}`);
+  }
 }
 
 displaySchoolValue('Holberton');
