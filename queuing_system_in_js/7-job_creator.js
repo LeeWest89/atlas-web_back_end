@@ -51,7 +51,7 @@ const jobs = [
 ];
 
 jobs.forEach((jobInfo) => {
-  const job = que.create('push_notification_code', jobInfo).save((error) => {
+  const job = que.create('push_notification_code_2', jobInfo).save((error) => {
     if (!error) {
       console.log(`Notification job created: ${job.id}`);
     }
