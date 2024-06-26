@@ -1,9 +1,9 @@
 // test for 8-job.js
 
-const createPushNotificationsJobs = require('./8-job.js');
 const kue = require('kue');
 const assert = require('assert');
 const sinon = require('sinon');
+const createPushNotificationsJobs = require('./8-job');
 
 describe('createPushNotificationsJobs', function() {
   let que;
